@@ -34,11 +34,11 @@ For memory-greedy Jlsca flavours it is recommended to disable swap:
 
 ### Platform 1
 
-i5-3230M 2.6 GHz, 4 GB RAM, 300 GB HDD, Ubuntu 16.04 x64 / Windows 7 x64
+i5-3230M 2.6 GHz, 4 GB RAM, HDD, Ubuntu 16.04 x64
 
 #### Tool versions
-* Daredevil f27dc64, built with clang 3.8.0-2ubuntu4, run in Ubuntu
-* Jlsca 41b7163, run with julia 0.5.2 in Ubuntu
+* Daredevil f27dc64, built with clang 3.8.0-2ubuntu4
+* Jlsca 41b7163, run with julia 0.5.2
 
 #### Results
 
@@ -50,3 +50,18 @@ i5-3230M 2.6 GHz, 4 GB RAM, 300 GB HDD, Ubuntu 16.04 x64 / Windows 7 x64
 #### Comments
 * Dadredevil 2 threads similar performance to 4 threads
 * Jlsca in Windows similar performance to Ubuntu
+
+### Platform 2
+
+i7-4790K 4.0 GHz, 32 GB RAM, SSD, Linux Mint 17.3 x64
+
+#### Tool versions
+* Daredevil f27dc64, built with clang 3.4-lubuntu3
+* Jlsca 41b7163, run with julia 0.5.2 in Linux
+
+#### Results
+
+| Tool                                        | Time, s |
+|:------------------------------------------- |:------- |
+| Daredevil 4 threads                         | 503     |
+| Jlsca 1 worker, conditional averaging       | 14      |
