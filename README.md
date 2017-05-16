@@ -10,7 +10,7 @@ Jlsca: https://github.com/Riscure/Jlsca
 
 Standard install described in the repositories of these tools.
 
-## Test case 1: Absolute sum all-bit DPA on AES-128
+## Test case 1: All-bit CPA on AES-128
 
 Traceset: aes128_sb_ciph_deadbeefcafebabe1122334455667788.trs (100K traces, 512 float32 samples/trace, 32 byte data)
 
@@ -48,4 +48,5 @@ i5-3230M 2.6 GHz, 4 GB RAM, 300 GB HDD, Ubuntu 16.04 x64 / Windows 7 x64
 | Jlsca 1 worker, conditional averaging       | 23      |
 
 #### Comments
-* Dadredevil 2 threads similar performance
+* Dadredevil 2 threads similar performance to 4 threads
+* Jlsca in Windows similar performance to Ubuntu
