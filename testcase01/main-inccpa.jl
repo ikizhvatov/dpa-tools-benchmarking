@@ -38,7 +38,7 @@ function gofaster()
       # alignstate = CorrelationAlignFFT(reference, referenceOffset, maxShift)
       # addSamplePass(trs, x -> ((shift,corval) = correlationAlign(x, alignstate); corval > corvalMin ? circshift(x, shift) : Vector{eltype(x)}(0)))
 
-      setPostProcessor(trs, IncrementalCorrelation(SplitByData($numberOfAverages, $numberOfCandidates)))
+      setPostProcessor(trs, IncrementalCorrelation(SplitByTracesBlock()))
       # setPostProcessor(trs, IncrementalCorrelation(SplitByTracesBlock()))
       # setPostProcessor(trs, IncrementalCorrelation(SplitByTracesSliced()))
   end
