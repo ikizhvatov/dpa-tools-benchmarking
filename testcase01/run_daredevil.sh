@@ -1,1 +1,1 @@
-time daredevil -c daredevil.config
+\time daredevil -c daredevil.config
