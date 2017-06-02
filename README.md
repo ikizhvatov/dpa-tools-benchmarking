@@ -1,6 +1,6 @@
 # DPA tools benchmarking
 
-Benchmarking of various tooling for differential power analysis. Very basic so far (runtime to process a traceset).
+Very basic so far (runtime to process a traceset). To clone this repo you will need Git-LFS.
 
 ## Tools and configuration
 
@@ -10,7 +10,7 @@ Jlsca: https://github.com/Riscure/Jlsca (GPLv3)
 
 Inspector: https://www.riscure.com/security-tools/inspector-sca (non-free, closed-source)
 
-Standard install described in the repositories of these tools.
+Standard install described in the repositories/manuals of these tools.
 
 ## Test case 1: All-bit CPA on AES-128
 
