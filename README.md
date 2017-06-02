@@ -1,16 +1,16 @@
 # DPA tools benchmarking
 
-Benchmarking of various tooling for differential power analysis. Very simple so far.
+Benchmarking of various tooling for differential power analysis. Very basic so far (runtime to process a traceset).
 
 ## Tools and configuration
 
-Daredevil: https://github.com/SideChannelMarvels/Daredevil
+Daredevil: https://github.com/SideChannelMarvels/Daredevil (GPLv3)
 
-Jlsca: https://github.com/Riscure/Jlsca
+Jlsca: https://github.com/Riscure/Jlsca (GPLv3)
+
+Inspector: https://www.riscure.com/security-tools/inspector-sca (non-free, closed-source)
 
 Standard install described in the repositories of these tools.
-
-Timing for Jlsca includes Julia interpretor startup time (~5 seconds).
 
 ## Test case 1: All-bit CPA on AES-128
 
@@ -34,39 +34,36 @@ For memory-greedy Jlsca flavours it is recommended to disable swap:
     $ ./run_jlsca_inccpa.sh
     [... this will take a lot of time ...]
 
-### Platform 1
+Inspector configuration settings included in the repository.
 
-i5-3230M 2.6 GHz (2 physical cores), 4 GB RAM, HDD, Ubuntu 16.04 x64
+### Results
 
-#### Tool versions
-* Daredevil f27dc64, built with clang 3.8.0-2ubuntu4
-* Jlsca 0fda401, run with julia 0.5.2
+| Tool                                        | Laptop   | Desktop | Ratio |
+|:------------------------------------------- |:-------- |:------- |:----- |
+| Jlsca, conditional averaging                | 23       | 14      | 1.6   |
+| Jlsca, incremental correlation              | 645      | 237     | 2.7   |
+| Daredevil                                   | 980      | 392     | 2.5   |
+| Inspector                                   | 1157     | 573     | 2.0   |
 
-#### Results
+Runtime in seconds. Ratio shows speedup factor from moving to a more powerful platform. Timing for Jlsca includes Julia interpretor startup time (about 3 to 5 seconds).
 
-| Tool                                        | Time, s |
-|:------------------------------------------- |:------- |
-| Daredevil, 4 threads                        | 980     |
-| Jlsca, incremental correlation, 2 threads   | 653     |
-| Jlsca, conditional averaging, 1 thread      | 23      |
+### Comments
+* Number of threads chosen for fastest execution:
+    * for Jlsca, equal to the number of physical cores; for conditional averaging just single thread so far
+    * for Daredevil and Inspector, number of physical cores x2 (assuming hyperthreading is on)
+* Windows vs Linux:
+    * Jlsca in Windows similar performance to Linux
+    * Daredevil on Windows (cygwin build) 30% slower than on Linux
 
+### Platforms
 
-#### Comments
-* Dadredevil with 2 threads takes 985 s
-* Jlsca in Windows similar performance to Linux
-* Daredevil on Windows (cygwin build) 30% slower than on Linux
+**Laptop**: i5-3230M 2.6 GHz (dual-core), 4 GB 1600 MHz DDR3, HDD, Ubuntu 16.04 x64 / Windows 7 x64
 
-### Platform 2
+**Desktop**: i7-6700 3.4 GHz (quad-core), 64 GB 2133 MHz DDR4, HDD, Ubunutu 16.04 x64 / Windows 7 x64
 
-i7-4790K 4.0 GHz (4 physical cores), 32 GB RAM, SSD, Linux Mint 17.3 x64
+TurboBoost is on.
 
-#### Tool versions
-* Daredevil f27dc64, built with clang 3.4-lubuntu3
-* Jlsca 41b7163, run with julia 0.5.2 in Linux
-
-#### Results
-
-| Tool                                        | Time, s |
-|:------------------------------------------- |:------- |
-| Daredevil 4 threads                         | 503     |
-| Jlsca 1 worker, conditional averaging       | 14      |
+**Tool versions:**
+* Daredevil f27dc64, built with g++ 5.4.0-6ubuntu1~16.04.4 and run under Linux
+* Jlsca bba20142, run with julia 0.5.2 under Linux
+* Inspector 4.10.1, run under Windows
