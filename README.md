@@ -1,6 +1,8 @@
 # DPA tools benchmarking
 
-Very basic so far (runtime to process a traceset). To clone this repo you will need Git-LFS.
+Very basic so far (runtime to process a traceset).
+
+To clone this repo with the included large datasets you will need [Git-LFS](https://git-lfs.github.com). Without Git-LFS, only pointers to large datasets will be cloned.
 
 ## Tools and configuration
 
