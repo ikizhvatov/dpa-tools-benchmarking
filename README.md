@@ -4,6 +4,8 @@ Very basic so far (runtime to process a traceset).
 
 To clone this repo with the included large datasets you will need [Git-LFS](https://git-lfs.github.com). Without Git-LFS, only pointers to large datasets will be cloned.
 
+Slides from the short talk at the Summer school on real-world crypto and privacy 2017: [floss_dpa_tooling_sibenik.pdf](floss_dpa_tooling_sibenik.pdf)
+
 ## Tools and configuration
 
 Daredevil: https://github.com/SideChannelMarvels/Daredevil (GPLv3)
