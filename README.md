@@ -20,23 +20,22 @@ Standard install described in the repositories/manuals of these tools.
 
 Traceset: aes128_sb_ciph_deadbeefcafebabe1122334455667788.trs (100K traces, 512 float32 samples/trace, 32 byte data)
 
-Running:
+### Running
+
+Prepare traceset
 
     $ cd testcase01
     $ ./prepareTraceset.sh
-    [... printout ...]
-    $ ./run_jlsca_condavg.sh
-    [... log with timing in the end ...]
-    $ ./run_daredevil.sh
-    [... log with timing in the end ...]
-
-For memory-greedy Jlsca flavours it is recommended to disable swap:
+    
+Disable swap to avoid going into swapping
 
     @ sudo swapoff -a
-    $ ./run_jlsca_noninc.sh
-    [... log with timing in the end ...]
+
+Run measurements for main Jlsca variants and Daredevil. The timings are output at the end.
+
+    $ ./run_jlsca_condavg.sh
     $ ./run_jlsca_inccpa.sh
-    [... this will take a lot of time ...]
+    $ ./run_daredevil.sh
 
 Inspector configuration settings included in the repository.
 
