@@ -29,7 +29,7 @@ Prepare traceset
     
 Disable swap to avoid going into swapping
 
-    @ sudo swapoff -a
+    $ sudo swapoff -a
 
 Run measurements for main Jlsca variants and Daredevil. The timings are output at the end.
 
