@@ -45,8 +45,8 @@ Inspector configuration settings included in the repository.
 |:------------------------------------------- |:-------- |:------- |:----- |
 | Jlsca, conditional averaging                | 23       | 14      | 1.6   |
 | Jlsca, incremental correlation              | 645      | 237     | 2.7   |
+| Inspector 4.12                              | 847      | 377     | 2.3   |
 | Daredevil                                   | 980      | 392     | 2.5   |
-| Inspector                                   | 1157     | 573     | 2.0   |
 
 Runtime in seconds. Ratio shows speedup factor from moving to a more powerful platform. Timing for Jlsca includes Julia interpretor startup time (about 3 to 5 seconds).
 
@@ -69,4 +69,4 @@ TurboBoost is on.
 **Tool versions:**
 * Daredevil f27dc64, built with g++ 5.4.0-6ubuntu1~16.04.4 and run under Linux
 * Jlsca bba20142, run with julia 0.5.2 under Linux
-* Inspector 4.10.1, run under Windows
+* Inspector 4.12, run under Windows
