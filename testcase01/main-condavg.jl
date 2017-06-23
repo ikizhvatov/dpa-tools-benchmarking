@@ -18,7 +18,7 @@ function gofaster()
   end
   
   # do an all-bit ABS-sum attack
-  params.analysis.leakageFunctions = [x -> ((x .>> i) & 1) for i in 0:7]
+  params.analysis.leakageFunctions = [x -> ((x .>> i) .& 1) for i in 0:7]
 
   numberOfAverages = length(params.keyByteOffsets)
   numberOfCandidates = getNumberOfCandidates(params)
@@ -42,6 +42,9 @@ function gofaster()
   end
 
   numberOfTraces = @fetch length(Main.trs)
+  if length(ARGS) > 1
+    numberOfTraces = min(parse(ARGS[2]), numberOfTraces)
+  end
 
   ret = sca(DistributedTrace(), params, 1, numberOfTraces)
 
