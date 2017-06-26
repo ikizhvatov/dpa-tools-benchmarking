@@ -18,7 +18,7 @@ function gofaster()
   end
   
   # do an all-bit ABS-sum attack
-  params.analysis.leakageFunctions = [x -> ((x .>> i) .& 1) for i in 0:7]
+  params.analysis.leakages = [Bit(i) for i in 0:7]
 
   numberOfAverages = length(params.keyByteOffsets)
   numberOfCandidates = getNumberOfCandidates(params)

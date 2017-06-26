@@ -18,8 +18,8 @@ function gofaster()
   end
 
   params.analysis = IncrementalCPA()
-  #params.analysis.leakageFunctions = [hw]
-  params.analysis.leakageFunctions = [x -> ((x .>> i) .& 1) for i in 0:7]
+  #params.analysis.leakages = [HW()]
+  params.analysis.leakages = [Bit(i) for i in 0:7]
 
   numberOfAverages = length(params.keyByteOffsets)
   numberOfCandidates = getNumberOfCandidates(params)
