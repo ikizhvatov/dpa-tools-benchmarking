@@ -70,3 +70,5 @@ TurboBoost is on.
 * Daredevil f27dc64, built with g++ 5.4.0-6ubuntu1~16.04.4 and run under Linux
 * Jlsca bba20142, run with julia 0.5.2 under Linux
 * Inspector 4.12, run under Windows
+
+Note that the same Jlsca code can run (with minimal additions) on a cluster of machines. This is not included here as it is quite a different setting, but described separately [in this tutorial](https://github.com/ikizhvatov/jlsca-tutorials/blob/master/HPC.md).
