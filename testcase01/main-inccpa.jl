@@ -1,4 +1,3 @@
-
 using Jlsca.Sca
 using Jlsca.Trs
 
@@ -17,9 +16,10 @@ function gofaster()
   end
 
   params.analysis = IncrementalCPA()
-  params.analysis.leakageFunctions = [x -> ((x .>> i) & 1) for i in 0:7]
+  params.analysis.leakages = [Bit(i) for i in 0:7]
 
   @everyworker begin
+      using Jlsca.Sca
       using Jlsca.Trs
       trs = InspectorTrace($filename)
       setPostProcessor(trs, IncrementalCorrelation(SplitByTracesBlock()))

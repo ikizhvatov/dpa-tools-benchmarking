@@ -1,7 +1,6 @@
-
 using Jlsca.Sca
 using Jlsca.Trs
-using Jlsca.Align
+#using Jlsca.Align
 
 # our vanilla  main function
 function gofaster()
@@ -18,14 +17,15 @@ function gofaster()
   end
   
   # do an all-bit ABS-sum attack
-  params.analysis.leakageFunctions = [x -> ((x .>> i) & 1) for i in 0:7]
+  params.analysis.leakages = [Bit(i) for i in 0:7]
 
   numberOfAverages = length(params.keyByteOffsets)
   numberOfCandidates = getNumberOfCandidates(params)
 
   @everyworker begin
+      using Jlsca.Sca
       using Jlsca.Trs
-      using Jlsca.Align
+      #using Jlsca.Align
       trs = InspectorTrace($filename)
 
       # # example alignment pass

@@ -1,6 +1,6 @@
 using Jlsca.Sca
 using Jlsca.Trs
-using Jlsca.Align
+#using Jlsca.Align
 
 # our vanilla  main function
 function go()
@@ -20,8 +20,8 @@ function go()
     params = AesSboxAttack()
   end
 
-  #params.analysis.leakageFunctions = [hw]
-  params.analysis.leakageFunctions = [x -> ((x .>> i) & 1) for i in 0:7]
+  #params.analysis.leakages = [hw]
+  params.analysis.leakages = [Bit(i) for i in 0:7]
   numberOfAverages = length(params.keyByteOffsets)
   numberOfCandidates = getNumberOfCandidates(params)
 
