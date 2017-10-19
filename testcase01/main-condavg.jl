@@ -1,6 +1,5 @@
 using Jlsca.Sca
 using Jlsca.Trs
-#using Jlsca.Align
 
 # our vanilla  main function
 function gofaster()
@@ -10,38 +9,24 @@ function gofaster()
   end
 
   filename = ARGS[1]
-  direction::Direction = (length(ARGS) > 1 && ARGS[2] == "BACKWARD" ? BACKWARD : FORWARD)
-  params = getParameters(filename, direction)
-  if params == nothing
-    params = AesSboxAttack()
-  end
+  attack = AesSboxAttack()
+  analysis = CPA()
+  params = DpaAttack(attack, analysis)
   
   # do an all-bit ABS-sum attack
   params.analysis.leakages = [Bit(i) for i in 0:7]
 
-  numberOfAverages = length(params.keyByteOffsets)
-  numberOfCandidates = getNumberOfCandidates(params)
-
   @everyworker begin
-      using Jlsca.Sca
       using Jlsca.Trs
-      #using Jlsca.Align
       trs = InspectorTrace($filename)
 
-      # # example alignment pass
-      # maxShift = 20000
-      # referenceOffset = 5000
-      # reference = trs[1][2][referenceOffset:referenceOffset+5000]
-      # corvalMin = 0.4
-      # alignstate = CorrelationAlignFFT(reference, referenceOffset, maxShift)
-      # addSamplePass(trs, x -> ((shift,corval) = correlationAlign(x, alignstate); corval > corvalMin ? circshift(x, shift) : Vector{eltype(x)}(0)))
-
-      setPostProcessor(trs, CondAvg(SplitByData($numberOfAverages, $numberOfCandidates)))
-      # setPostProcessor(trs, CondAvg(SplitByTracesBlock()))
-      # setPostProcessor(trs, IncrementalCorrelation(SplitByTracesSliced()))
+      setPostProcessor(trs, CondAvg(SplitByTracesBlock()))
   end
 
   numberOfTraces = @fetch length(Main.trs)
+  if length(ARGS) > 1
+    numberOfTraces = min(parse(ARGS[2]), numberOfTraces)
+  end
 
   ret = sca(DistributedTrace(), params, 1, numberOfTraces)
 
