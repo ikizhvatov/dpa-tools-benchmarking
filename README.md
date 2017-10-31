@@ -1,6 +1,6 @@
 # DPA tools benchmarking
 
-Very basic so far (runtime to process a traceset).
+Very basic so far (runtime to process a traceset), and limited to computational part of DPA.
 
 To clone this repo with the included large datasets you will need [Git-LFS](https://git-lfs.github.com). Without Git-LFS, only pointers to large datasets will be cloned.
 
@@ -18,7 +18,7 @@ Standard install described in the repositories/manuals of these tools.
 
 ## Test case 1: All-bit CPA on AES-128
 
-Traceset: aes128_sb_ciph_deadbeefcafebabe1122334455667788.trs (100K traces, 512 float32 samples/trace, 32 byte data)
+Traceset: 100K traces, 512 float32 samples/trace, 32 byte data
 
 ### Running
 
@@ -43,8 +43,8 @@ Inspector configuration settings included in the repository.
 
 | Tool                                        | Laptop   | Desktop | Ratio |
 |:------------------------------------------- |:-------- |:------- |:----- |
-| Jlsca, conditional averaging                | 23       | 14      | 1.6   |
-| Jlsca, incremental correlation              | 645      | 237     | 2.7   |
+| Jlsca, conditional averaging                | 21       | 12      | 1.8   |
+| Jlsca, incremental correlation              | 502      | 228     | 2.2   |
 | Inspector 4.12                              | 847      | 377     | 2.3   |
 | Daredevil                                   | 980      | 392     | 2.5   |
 
@@ -54,6 +54,8 @@ Runtime in seconds. Ratio shows speedup factor from moving to a more powerful pl
 * Number of threads chosen for fastest execution:
     * for Jlsca, equal to the number of physical cores; for conditional averaging just single thread so far
     * for Daredevil and Inspector, number of physical cores x2 (assuming hyperthreading is on)
+* Memory:
+    * in Daredevil config, max memory is set to physical RAM size minus 1 GB.
 * Windows vs Linux:
     * Jlsca in Windows similar performance to Linux
     * Daredevil on Windows (cygwin build) 30% slower than on Linux
@@ -67,8 +69,8 @@ Runtime in seconds. Ratio shows speedup factor from moving to a more powerful pl
 TurboBoost is on.
 
 **Tool versions:**
-* Daredevil f27dc64, built with g++ 5.4.0-6ubuntu1~16.04.4 and run under Linux
-* Jlsca bba20142, run with julia 0.5.2 under Linux
+* Daredevil 897f602, built with g++ 5.4.0-6ubuntu1~16.04.5 and run under Linux
+* Jlsca 5e002a4, run with julia 0.6.1 under Linux
 * Inspector 4.12, run under Windows
 
 Note that the same Jlsca code can run (with minimal additions) on a cluster of machines. This is not included here as it is quite a different setting, but described separately [in this tutorial](https://github.com/ikizhvatov/jlsca-tutorials/blob/master/HPC.md).
