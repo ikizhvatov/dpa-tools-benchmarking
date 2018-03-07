@@ -44,7 +44,7 @@ Run measurements for main Jlsca variants and Daredevil. The timings are output a
     $ ./run_jlsca_inccpa[_hw].sh
     $ ./run_daredevil[_hw].sh
 
-ChipWhisperer and Inspector are run from the GUI. Inspector configuration settings and ChipWhiserer attack script `attack_cpa_caccel.py` are included in the repository.
+ChipWhisperer and Inspector are run from the GUI. Inspector configuration settings and ChipWhisperer attack script `attack_cpa_caccel.py` are included in the repository.
 
 ### Results all-bit CPA
 
