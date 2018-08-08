@@ -1,14 +1,17 @@
+using Distributed
 using Jlsca.Sca
 using Jlsca.Trs
+@everywhere using Jlsca.Sca
+@everywhere using Jlsca.Trs
 
 # our vanilla  main function
 function gofaster()
   if length(ARGS) < 1
-    @printf("no input trace\n")
+    print("no input trace\n")
     return
   end
 
-  filename = ARGS[1]
+  filename = "$(ARGS[1])"
   attack = AesSboxAttack()
   analysis = CPA()
   params = DpaAttack(attack, analysis)
@@ -16,14 +19,13 @@ function gofaster()
   # do an all-bit ABS-sum attack
   params.analysis.leakages = [Bit(i) for i in 0:7]
 
-  @everyworker begin
-      using Jlsca.Trs
+  @everywhere begin
       trs = InspectorTrace($filename)
 
       setPostProcessor(trs, CondAvg(SplitByTracesBlock()))
   end
 
-  numberOfTraces = @fetch length(Main.trs)
+  numberOfTraces = length(trs)
   if length(ARGS) > 1
     numberOfTraces = min(parse(ARGS[2]), numberOfTraces)
   end

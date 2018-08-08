@@ -14,4 +14,4 @@ else
 fi
 
 # run julia with multiple threads
-JULIA_NUM_THREADS=${NCORES} \time julia main-inccpa.jl aes128_sb_ciph_deadbeefcafebabe1122334455667788.trs
+JULIA_NUM_THREADS=${NCORES} \time julia --color=yes main-inccpa.jl aes128_sb_ciph_deadbeefcafebabe1122334455667788.trs
