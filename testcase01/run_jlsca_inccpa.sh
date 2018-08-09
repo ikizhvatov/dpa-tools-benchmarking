@@ -3,7 +3,7 @@
 # so far only for a single-processor machine setting
 PLATFORM=`uname`
 if [[ "$PLATFORM" == 'Linux' ]]; then
-    NCORES=`grep "^cpu cores" /proc/cpuinfo | sort -u | awk '{print $4}'`
+    NCORES=`grep core\ id /proc/cpuinfo | sort | uniq | wc -l`
     echo Linux detected, on $NCORES physical CPU cores
 elif [[ "$PLATFORM" == 'Darwin' ]]; then
     NCORES=`sysctl -n hw.physicalcpu`
